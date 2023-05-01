@@ -1,0 +1,12 @@
+<h1>Giris yap</h1>
+
+<% if (typeof error !== "undefined" ) { %>
+
+<div style="background-color: red; padding: 5px; color: #fff"><%= error %></div>
+<% } %>
+
+<form action="/auth/login" method="post">
+  <input type="text" name="username" placeholder="Kullanıcı adı" />
+  <input type="password" name="password" placeholder="Parola" />
+  <button type="submit">Giris Yap</button>
+</form>
