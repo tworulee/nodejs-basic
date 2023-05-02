@@ -20,3 +20,8 @@ export const postLoginController = (req, res) => {
     error,
   });
 };
+
+export const logoutController = (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+};
