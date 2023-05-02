@@ -5,13 +5,6 @@ import session from 'express-session';
 
 dotenv.config();
 
-session({
-  secret: process.env.SESSION_KEY,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true },
-});
-
 //expressi baslatıyor
 const app = express();
 const port = process.env.PORT || 3001;
@@ -20,6 +13,14 @@ app.set('view engine', 'ejs');
 app.use(
   express.urlencoded({
     extended: true,
+  })
+);
+app.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
   })
 );
 

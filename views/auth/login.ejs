@@ -6,7 +6,13 @@
 <% } %>
 
 <form action="/auth/login" method="post">
-  <input type="text" name="username" placeholder="Kullanıcı adı" />
+  <input
+    type="text"
+    name="username"
+    placeholder="Kullanıcı adı"
+    value="<%= typeof formData !== 'undefined' ? formData.username : '' %>"
+  />
+  <br />
   <input type="password" name="password" placeholder="Parola" />
   <button type="submit">Giris Yap</button>
 </form>
