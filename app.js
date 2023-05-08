@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import auth from './routes/auth.js';
 import session from 'express-session';
+import fileUpload from 'express-fileupload';
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(
     extended: true,
   })
 );
+app.use(fileUpload());
 app.use(
   session({
     secret: process.env.SESSION_KEY,
