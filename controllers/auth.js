@@ -1,4 +1,5 @@
 import { validationResult } from 'express-validator';
+import slugify from 'slugify';
 
 export const getRegisterController = (req, res) => {
   res.render('auth/register');
@@ -36,6 +37,25 @@ export const postRegisterController = (req, res) => {
   //     errors: errors.array(),
   //   });
   // }
+
+  //Hata yoksa 
+  if (errors.isEmpty()) {
+    let avatar = req.files.avatar;
+    let file = avatar.name.split(".")
+    let fileExtension = file.pop()
+    let fileName = file.join("")
+    let path = "upload/" + Date.now() + "-" + slugify(fileName, {
+      lower: true,
+      locale: "tr",
+      strict:true
+    }) + "." + fileExtension;
+    avatar.mv(path, err => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      console.log("Kayıt Basarılı")
+    })
+  }
 
   res.render('auth/register', {
     errors: errors.array(),

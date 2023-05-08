@@ -16,7 +16,15 @@ app.use(
     extended: true,
   })
 );
-app.use(fileUpload());
+//upload klasörüne ulasmak iciin
+app.use("/assets", express.static("assets"))
+app.use("/upload", express.static("upload"))
+app.use(fileUpload({
+  //setFileNames: true,
+  //preserveExtension: true,
+  useTempFiles:true
+  
+}));
 app.use(
   session({
     secret: process.env.SESSION_KEY,
